@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 
     public class Lastname {
 
-        private static final String PASSWORD= "^[A-Za-z]{8}$";
+        private static final String PASSWORD= "(?=.*?[A-Z]).{1,}(?=.*?[a-z]).{7,}$";
 
 
         public boolean checkPassword(String password) {
