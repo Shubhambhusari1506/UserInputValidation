@@ -3,12 +3,12 @@ import java.util.regex.Pattern;
 
     public class Lastname {
 
-        private static final String PASSWORD= "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^$@!#%*?&]*[$#@!%*?&][^$@!#%*?&]*$).{8,}$";
+        private static final String EMAIL= "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
 
 
-        public boolean checkPassword(String password) {
-            Pattern pattern = Pattern.compile(password);
-            return Pattern.matches(PASSWORD,password);
+        public boolean checkEmail(String email) {
+            Pattern pattern = Pattern.compile(email);
+            return Pattern.matches(EMAIL,email);
 
         }
 
