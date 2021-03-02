@@ -14,7 +14,7 @@ public class UserValidation {
     }
 
    @Test
-    public void testLastName(){
-    Assertions.assertTrue(operation.checkLastName("Bhu"));
+    public void testEmail(){
+    Assertions.assertTrue(operation.checkEmail("shubhambhusari2@gmail.com"));
     }
 }
