@@ -14,7 +14,7 @@ public class UserValidation {
     }
 
    @Test
-    public void testEmail(){
-    Assertions.assertTrue(operation.checkEmail("shubhambhusari2@gmail.com"));
+    public void testmobile(){
+    Assertions.assertTrue(operation.checkPassword("Shubhamb"));
     }
 }
