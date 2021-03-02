@@ -15,6 +15,6 @@ public class UserValidation {
 
    @Test
     public void testmobile(){
-    Assertions.assertTrue(operation.checkPassword("Shubhamb"));
+    Assertions.assertTrue(operation.checkPassword("ShubhamB1"));
     }
 }
