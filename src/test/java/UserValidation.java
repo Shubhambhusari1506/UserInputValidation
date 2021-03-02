@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 public class UserValidation {
 
-    Firstname operation;
+    Lastname operation;
 
     @BeforeEach
     public void setUp(){
-        operation = new Firstname();
+        operation = new Lastname();
 
     }
 
    @Test
-    public void testFirstName(){
-    Assertions.assertTrue(operation.checkFirstName("Shubham"));
+    public void testLastName(){
+    Assertions.assertTrue(operation.checkLastName("Bhu"));
     }
 }
