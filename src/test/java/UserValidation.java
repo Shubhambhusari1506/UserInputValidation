@@ -1,9 +1,35 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
 
 public class UserValidation {
     UserValidation operation;
+    @ParameterizedTest
+    @MethodSource("getEmailTests")
+    public void test_email(String email, boolean expResult){
+        Assertions.assertEquals(expResult, operation.checkEmail(email));
+    }
+    private static Stream<Arguments> getEmailTests(){
+        return Stream.of(
+                Arguments.of("abc@yahoo.com", true),
+                Arguments.of("abc-100@yahoo.com", true),
+                Arguments.of("abc.100@yahoo.com", true),
+                Arguments.of("abc111@abc.com", true),
+                Arguments.of("abc@.com.my", false),
+                Arguments.of("abc@gmail.com.aa.au", false),
+                Arguments.of(".abc@com.com",false),
+                Arguments.of("abc+100@gmail.com",true)
+        );
+    }
+
+
+
     @BeforeEach
     public void setUp() {
         operation = new UserValidation();
