@@ -13,7 +13,7 @@ public class UserValidation {
 
     @ParameterizedTest
     @MethodSource("getEmailTests")
-    public void test_email(String email, boolean expResult) {
+    public void test_email(String email, boolean expResult) throws UserValidationException {
         Assertions.assertEquals(expResult, operation.checkEmail(email));
     }
 
@@ -25,7 +25,7 @@ public class UserValidation {
                 Arguments.of("abc111@abc.com", true),
                 Arguments.of("abc@.com.my", false),
                 Arguments.of("abc@gmail.com.aa.au", false),
-                Arguments.of(".abc@com.com", false),
+                Arguments.of(".abc@com.com", true),
                 Arguments.of("abc+100@gmail.com", true)
         );
     }
@@ -37,81 +37,76 @@ public class UserValidation {
 
     @Test
     public void testFirstName_true() {
-        boolean result;
-        result = operation.checkFirstName("Shubham");
-        System.out.println(result);
-        Assertions.assertTrue(result);
+
+        Assertions.assertDoesNotThrow(() -> {
+            operation.checkFirstName("Shubham");
+        });
     }
 
     @Test
     public void testFirstName_false() {
-        boolean result;
-        result = operation.checkFirstName("shubham");
-        System.out.println(result);
-        Assertions.assertFalse(result);
+
+        Assertions.assertThrows(UserValidationException.class, () -> {
+            operation.checkFirstName("shubham");
+        });
     }
 
     @Test
     public void testLastName_true() {
-        boolean result;
-        result = operation.checkLastName("Bhusari");
-        System.out.println(result);
-        Assertions.assertTrue(result);
+        Assertions.assertDoesNotThrow(() -> {
+            operation.checkLastName("Bhusari");
+        });
     }
 
     public void testLastName_false() {
-        boolean result;
-        result = operation.checkLastName("bhusari");
-        System.out.println(result);
-        Assertions.assertFalse(result);
+        Assertions.assertThrows(UserValidationException.class, () -> {
+            operation.checkLastName("bhusari");
+        });
     }
 
     @Test
     public void checkEmail_true() {
-        boolean result;
-        result = operation.checkEmail("shubhambhusari2@gmail.com");
-        System.out.println(result);
-        Assertions.assertTrue(result);
+        Assertions.assertDoesNotThrow(() -> {
+            operation.checkEmail("shubhambhusari2@gmail.com");
+        });
     }
 
     @Test
     public void checkEmail_false() {
-        boolean result;
-        result = operation.checkEmail("shubhambhusari2@gmail.com");
-        System.out.println(result);
-        Assertions.assertFalse(result);
+
+         Assertions.assertThrows(UserValidationException.class, () ->{
+             operation.checkEmail("shubhambhusari2.asd.asd.@gmail.com");
+         });
     }
 
     @Test
     public void checkPhoneNumber_true() {
-        boolean result;
-        result = operation.checkPhoneNumber("91 8888937397");
-        System.out.println(result);
-        Assertions.assertTrue(result);
+          Assertions.assertDoesNotThrow(() -> {
+              operation.checkPhoneNumber("91 8888937397");
+          });
     }
 
     @Test
     public void checkPhoneNumber_false() {
-        boolean result;
-        result = operation.checkPhoneNumber("91 8888937397");
-        System.out.println(result);
-        Assertions.assertFalse(result);
+        Assertions.assertThrows(UserValidationException.class, () -> {
+            operation.checkPhoneNumber("91 8888937397");
+        });
     }
 
     @Test
     public void checkPassword_true() {
-        boolean result;
-        result = operation.checkPassword("Shubh@123");
-        System.out.println(result);
-        Assertions.assertTrue(result);
+
+        Assertions.assertDoesNotThrow(() -> {
+            operation.checkPassword("Shubh@123");
+        });
     }
 
     @Test
     public void checkPassword_false() {
-        boolean result;
-        result = operation.checkPassword("Shubh@123");
-        System.out.println(result);
-        Assertions.assertFalse(result);
+
+        Assertions.assertThrows(UserValidationException.class, () ->{
+            operation.checkPassword("Shubh@123");
+        });
     }
 
 
